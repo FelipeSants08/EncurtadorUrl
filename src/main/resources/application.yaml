@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: encurtador
+  datasource:
+    url: jdbc:postgresql://localhost:5432/encurtador_db
+    username: postgres
+    password: felipe
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
