@@ -2,9 +2,9 @@ spring:
   application:
     name: encurtador
   datasource:
-    url: jdbc:postgresql://${PGHOST}:${PGPORT}/${PGDATABASE}
-    username: ${PGUSER}
-    password: ${PGPASSWORD}
+    url: jdbc:postgresql://${PGHOST:localhost}:${PGPORT:5432}/${PGDATABASE:encurtador_db}
+    username: ${PGUSER:postgres}
+    password: ${PGPASSWORD:felipe}
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:

@@ -4,6 +4,8 @@ import com.santana.encurtador.model.Url;
 import com.santana.encurtador.model.UrlRequest;
 import com.santana.encurtador.model.UrlResponse;
 import com.santana.encurtador.service.UrlService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +23,7 @@ public class UrlController {
         this.service = service;
     }
 
+    @Operation(summary = "Encurtador de URL", description = "Encurta a URL que for passada no corpo da requisição")
     @PostMapping("/encurtar")
     public ResponseEntity<UrlResponse> encurtar(@Valid @RequestBody UrlRequest request) {
         Url url = service.save(request);
@@ -29,7 +32,7 @@ public class UrlController {
     }
 
 
-
+    @Operation(summary = "Redirecionar a partir do link", description = "Te redireciona para URL original a partir da URL simplificada")
     @GetMapping("/{urlEncurtada}")
     public ResponseEntity<Void> buscar(@PathVariable String urlEncurtada) {
         String urlOriginal = service.buscarUrl(urlEncurtada);
