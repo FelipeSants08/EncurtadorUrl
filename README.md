@@ -118,8 +118,8 @@ encurtadorurl-production.up.railway.app
 ## 🧪 Como executar localmente
 
 ```bash
-git clone https://github.com/seu-usuario/seu-repo.git
-cd seu-repo
+git clone https://github.com/FelipeSants08/EncurtadorUrl.git
+cd EncurtadorUrl
 docker compose up
 ```
 
