@@ -22,8 +22,8 @@ public class RestExceptionHandler {
 
     @ExceptionHandler(UrlNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ValidationErrorMessage exception(UrlNotFoundException ex){
-        return new ValidationErrorMessage(ex.getLocalizedMessage(), ex.getMessage());
+    public ErrorMessage exception(UrlNotFoundException ex){
+        return new ErrorMessage(ex.getMessage());
     }
 
 }
