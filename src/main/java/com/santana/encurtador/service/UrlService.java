@@ -31,16 +31,22 @@ public class UrlService {
 
         Url url = new Url();
         url.setUrl(request.url());
-        url.setCodigoEncurtado(encurtarUrl());
+        url.setCodigoEncurtado(gerarCodigoUnico());
         url.setDataUrlExpirado(LocalDateTime.now().plusDays(1));
         return urlRepository.save(url);
     }
 
 
+    public String gerarCodigoUnico(){
+        String codigo;
+        do {
+            codigo = encurtarUrl();
+        } while (urlRepository.findByCodigoEncurtado(codigo).isPresent());
+        return codigo;
+    }
 
 
     public String encurtarUrl() {
-
         Random random = new SecureRandom();
         int tamanho = random.nextInt(5, 8);
         StringBuilder urlEncurtada = new StringBuilder(tamanho);

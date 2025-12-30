@@ -11,7 +11,7 @@ import java.util.Optional;
 public interface UrlRepository extends JpaRepository<Url, Long> {
     Optional<Url> findByCodigoEncurtado(String urlEncurtada);
 
-    Optional<Url> findByCodigoEncurtadoAndDataUrlExpiradoAfter(String urlEncurtada, LocalDateTime data);
+    //Optional<Url> findByCodigoEncurtadoAndDataUrlExpiradoAfter(String urlEncurtada, LocalDateTime data);
 
     @Query("""
         select u from Url u
@@ -23,9 +23,9 @@ public interface UrlRepository extends JpaRepository<Url, Long> {
             @Param("agora") LocalDateTime data
     );
 
-    @Query("select u.url from Url u where u.codigoEncurtado = :codigo")
-    String urlOriginal(
-            @Param("codigo") String codigo
-    );
+//    @Query("select u.url from Url u where u.codigoEncurtado = :codigo")
+//    String urlOriginal(
+//            @Param("codigo") String codigo
+//    );
 
 }
