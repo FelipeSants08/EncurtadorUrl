@@ -1,0 +1,30 @@
+services:
+  java:
+    build: .
+    container_name: encurtador
+    ports:
+      - "8080:8080"
+    restart: always
+    depends_on:
+      - postgres
+    environment:
+      USERNAME_DB: postgres
+      PASSWORD_DB: felipe
+    networks:
+      - private_network
+
+  postgres:
+    image: postgres:15
+    container_name: db_postgress
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: felipe
+      POSTGRES_DB: encurtador
+    ports:
+      - "5431:5432"
+    networks:
+      - private_network
+
+networks:
+  private_network:
+    driver: bridge
