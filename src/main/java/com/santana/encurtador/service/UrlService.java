@@ -1,5 +1,6 @@
 package com.santana.encurtador.service;
 
+import com.santana.encurtador.exception.UrlNotFoundException;
 import com.santana.encurtador.model.Url;
 import com.santana.encurtador.model.UrlRequest;
 import com.santana.encurtador.repository.UrlRepository;
@@ -13,7 +14,7 @@ import java.util.Random;
 public class UrlService {
 
     private final UrlRepository urlRepository;
-    private final String CARACTERES = "ABCDUFGHIJKLMNOPQRSTUVWXYZqwertyuiopasdfghjklzxcvbnm0123456789";
+    private final String CARACTERES = "ABCDEFGHIJKLMNOPQRSTUVWXYZqwertyuiopasdfghjklzxcvbnm0123456789";
 
     public UrlService(UrlRepository urlRepository) {
         this.urlRepository = urlRepository;
@@ -21,15 +22,8 @@ public class UrlService {
 
 
     public String buscarUrl(String codigoEncurtado) {
-//        Url url = urlRepository.findByCodigoEncurtado(codigoEncurtado)
-//                .orElseThrow(() -> new RuntimeException("URL não encontrado"));
-//        if (LocalDateTime.now().isBefore(url.getDataUrlExpirado())){
-//            return url.getUrl();
-//        }else {
-//            throw new RuntimeException("URL expirada");
-//        }
         Url url = urlRepository.buscarAtivo(codigoEncurtado, LocalDateTime.now())
-                .orElseThrow(() -> new RuntimeException("Codigo incorreto ou expirado"));
+                .orElseThrow(() -> new UrlNotFoundException("Codigo incorreto ou expirado"));
         return url.getUrl();
     }
 

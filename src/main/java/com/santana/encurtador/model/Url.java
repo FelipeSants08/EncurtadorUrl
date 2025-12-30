@@ -1,9 +1,6 @@
 package com.santana.encurtador.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 
@@ -16,6 +13,7 @@ public class Url {
 
     private String url;
 
+    @Column(unique = true)
     private String codigoEncurtado;
 
     private LocalDateTime dataUrlExpirado;
