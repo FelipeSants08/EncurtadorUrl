@@ -8,8 +8,11 @@ services:
     depends_on:
       - postgres
     environment:
-      USERNAME_DB: postgres
-      PASSWORD_DB: felipe
+      PGUSER: postgres
+      PGPASSWORD: felipe
+      PGHOST: postgres
+      PGPORT: 5432
+      PGDATABASE: encurtador
     networks:
       - private_network
 
